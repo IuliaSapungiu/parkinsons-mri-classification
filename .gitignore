@@ -1,0 +1,27 @@
+# Environments
+myenv/
+
+# Models
+models/
+
+# Heavy Raw and Processed MRI Volumes
+raw/
+openneuro/
+processed_data/HC/
+processed_data/PD/
+processed_data/nifti/
+processed_data/skull_stripped/
+processed_data/openneuro_skull_stripped/
+processed_data/registration/
+processed_data/openneuro_registered/
+
+# Large file extensions safety catch
+*.nii
+*.nii.gz
+*.dcm
+*.tar.gz
+*.zip
+
+# Python cache
+__pycache__/
+*.pyc
