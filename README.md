@@ -94,12 +94,14 @@ flowchart TD
 
 ## 📊 Key Results Summary
 
-| Model | Cohort | Modality | Accuracy / AUC | Key Findings |
+| Model | Cohort | Configuration | Accuracy | Key Findings |
 | :--- | :--- | :--- | :--- | :--- |
-| **Random Forest** | PPMI (Internal) | Clinical + Radiomics | *[e.g., 88.5% / 0.91]* | High diagnostic value from UPDRS & striatal features. |
-| **3D CNN** | PPMI (Internal) | Structural T1 MRI | *[e.g., 84.2% / 0.88]* | Effective deep feature learning from MNI-aligned scans. |
-| **Random Forest** | OpenNeuro (External) | Multimodal | *[e.g., 79.1% / 0.82]* | Demonstrates cross-site generalisability. |
-| **3D CNN** | OpenNeuro (External) | Structural T1 MRI | *[e.g., 74.5% / 0.78]* | Validates robustness against domain shift. |
+| **Random Forest** | PPMI (Internal) | Multimodal Full | 62.22% | Highest internal accuracy; HC recall 0.78 but PD recall only 0.45 — asymmetric error profile |
+| **Logistic Regression** | PPMI (Internal) | Multimodal Full | 60.00% | More balanced error profile than RF; PD recall 0.68 vs RF's 0.45 |
+| **3D CNN** | PPMI (Internal) | Multimodal | 60.00% | Most balanced errors (HC 0.61 / PD 0.59); no hand-engineered features required |
+| **Random Forest** | OpenNeuro (External) | Multimodal Full | 76.09% | Best external generalisation; balanced accuracy 77.24% with Z-score harmonisation |
+| **Logistic Regression** | OpenNeuro (External) | Multimodal Full | 71.74% | Most clinically balanced external result; HC recall 0.71 / PD recall 0.72 |
+| **3D CNN** | OpenNeuro (External) | Multimodal | 57.00% | Generalisation failure — predicted PD for 45/46 subjects; HC recall 0.05 |
 
 ## 📁 Repository Structure
 
