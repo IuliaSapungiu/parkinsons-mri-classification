@@ -193,9 +193,9 @@ To strictly comply with the Parkinson's Progression Markers Initiative (PPMI) Da
 
 > **Data Access Note:** Access to raw MRI scans and primary clinical datasets must be obtained directly through the official portals for [PPMI](https://www.ppmi-info.org/) and [OpenNeuro]([https://openneuro.org/](https://openneuro.org/datasets/ds001907/versions/3.0.2). This work was supported by the Northern, Yorkshire and Humberside Digital Informatics Forum (NYHDIF) Bursary Award Scheme, University of Sheffield.
 
-
 > **If you use this code or methodology, please cite:**
 *Sapungiu, I. (2026). AI-Based Classification of Early-Stage 
 Parkinson's Disease from Structural Neuroimaging: A Multimodal 
 Comparative Study. MSc Dissertation, University of Sheffield.*
 
+###### All rights reserved © Iulia Sapungiu
