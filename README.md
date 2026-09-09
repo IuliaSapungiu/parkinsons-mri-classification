@@ -10,6 +10,7 @@ The study evaluates a multimodal approach combining T1-weighted structural MRI s
 
 ## 📋 Table of Contents
 * [🚀 Quick Start and Installation](#-quick-start-and-installation)
+* [🔄 Pipeline & Model Workflow](#-pipeline--model-workflow)
 * [⚙️ Computational Pipeline Execution](#️-computational-pipeline-execution)
 * [📁 Repository Structure](#-repository-structure)
 * [⚖️ Data Governance & Compliance](#%EF%B8%8F-data-governance--compliance)
@@ -51,6 +52,38 @@ The pipeline scripts located in `scripts/` are numerically indexed to ensure exa
 | **5. PPMI Model Training** | `07_train_ml_ppmi.py`<br>`08_train_3d_cnn.py` | Internal training and cross-validation for classical ML (RF, LR) and 3D CNN architectures. |
 | **6. External Validation** | `09_openneuro_skull_strip.py`<br>`10_openneuro_registration.py`<br>`11_openneuro_extract_features.py`<br>`12_openneuro_ml.py`<br>`13_openneuro_3dcnn.py` | Execution of skull stripping, registration, feature extraction, and model inference on OpenNeuro. |
 
+## 🔄 Pipeline & Model Workflow
+
+```mermaid
+flowchart TD
+    A([Selection Criteria]) --> B[1. Cohort Selection & Data Acquisition]
+    
+    B -->|Clinical Data| C[2. Clinical Feature Preparation]
+    B -->|Neuroimaging Data| D[3. Neuroimaging Preprocessing<br/>DICOM conversion, skull-stripping,<br/>spatial normalisation]
+    
+    C -->|Prepared Features| E[4. Dataset Partitioning]
+    D -->|Preprocessed Scans| E
+    
+    E -->|Partitioned Data| F[5. Feature Extraction]
+    
+    F -->|Extracted Features| G[6. Model Training & Internal Evaluation<br/>on PPMI Dataset]
+    
+    G -->|Internal Eval Results| H([PPMI Results])
+    
+    G -->|Trained Model| I[7. External Validation<br/>on OpenNeuro Dataset]
+    J[(OpenNeuro Dataset)] -->|External Data| I
+    
+    I -->|External Validation Results| K([Generalisability Results])
+
+    %% Styling
+    classDef oval fill:#1f6feb,stroke:#388bfd,color:#ffffff,stroke-width:2px;
+    classDef box fill:#161b22,stroke:#30363d,color:#e6edf3,stroke-width:1.5px;
+    classDef db fill:#0d419d,stroke:#388bfd,color:#ffffff,stroke-width:2px;
+    
+    class A,H,K oval;
+    class B,C,D,E,F,G,I box;
+    class J db;
+```
 
 ## 📁 Repository Structure
 
@@ -125,7 +158,7 @@ To strictly comply with the Parkinson's Progression Markers Initiative (PPMI) Da
   * Subject cross-validation split files (`.pkl`, `.csv`)
   * Quantitative evaluation plots, metric curves, and confusion matrices (`results/figures/`)
 
-> **Data Access Note:** Access to raw MRI scans and primary clinical datasets must be obtained directly through the official portals for [PPMI](https://www.ppmi-info.org/) and [OpenNeuro]([https://openneuro.org/](https://openneuro.org/datasets/ds001907/versions/3.0.2)).
+> **Data Access Note:** Access to raw MRI scans and primary clinical datasets must be obtained directly through the official portals for [PPMI](https://www.ppmi-info.org/) and [OpenNeuro]([https://openneuro.org/](https://openneuro.org/datasets/ds001907/versions/3.0.2).
 
 
 
