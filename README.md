@@ -9,6 +9,10 @@ The study evaluates a multimodal approach combining T1-weighted structural MRI s
 ---
 
 ## 📋 Table of Contents
+* [🚀 Quick Start and Installation](#-quick-start-and-installation)
+* [⚙️ Computational Pipeline Execution](#️-computational-pipeline-execution)
+* [📁 Repository Structure](#-repository-structure)
+* [⚖️ Data Governance & Compliance](#%EF%B8%8F-data-governance--compliance)
 
 ## Quick Start and Installation
 1. Clone the repository
@@ -33,6 +37,20 @@ The study evaluates a multimodal approach combining T1-weighted structural MRI s
   pip install --upgrade pip
   pip install -r requirements.txt
   ```
+
+## ⚙️ Computational Pipeline Execution
+The pipeline scripts located in `scripts/` are numerically indexed to ensure exact reproduction of the experimental workflow:
+
+| Stage | Script(s) | Description |
+| :--- | :--- | :--- |
+| **0. OpenNeuro Prep** | `00_extract_openneuro.py`<br>`00b_preprocessing.py`<br>`00b_verify_openneuro.py` | Extracts, cleans, and verifies external validation scans and metadata. |
+| **1. PPMI Clinical & Data Prep** | `01_PPMI_extraction.py`<br>`01b_PPMI_clinical_data_prep.py`<br>`02_PPMI_MRI_transform.py` | Cohort selection, harmonization of MDS-UPDRS/demographics, DICOM-to-NIfTI conversion. |
+| **2. Preprocessing & Registration** | `03_skull_strip.py`<br>`04_registration.py` | Automated skull stripping and spatial normalization to standard MNI152 space. |
+| **3. Dataset Splitting** | `05_splitting.py` | Stratified 70/15/15 train/validation/test cohort partitioning. |
+| **4. Feature Extraction & Prep** | `06a_extract_features.py`<br>`06b_preprocessing.py` | Radiomic atlas feature extraction, scaling, and missing value imputation. |
+| **5. PPMI Model Training** | `07_train_ml_ppmi.py`<br>`08_train_3d_cnn.py` | Internal training and cross-validation for classical ML (RF, LR) and 3D CNN architectures. |
+| **6. External Validation** | `09_openneuro_skull_strip.py`<br>`10_openneuro_registration.py`<br>`11_openneuro_extract_features.py`<br>`12_openneuro_ml.py`<br>`13_openneuro_3dcnn.py` | Execution of skull stripping, registration, feature extraction, and model inference on OpenNeuro. |
+
 
 ## 📁 Repository Structure
 
@@ -107,7 +125,7 @@ To strictly comply with the Parkinson's Progression Markers Initiative (PPMI) Da
   * Subject cross-validation split files (`.pkl`, `.csv`)
   * Quantitative evaluation plots, metric curves, and confusion matrices (`results/figures/`)
 
-> **Data Access Note:** Access to raw MRI scans and primary clinical datasets must be obtained directly through the official portals for [PPMI](https://www.ppmi-info.org/) and [OpenNeuro](https://openneuro.org/).
+> **Data Access Note:** Access to raw MRI scans and primary clinical datasets must be obtained directly through the official portals for [PPMI](https://www.ppmi-info.org/) and [OpenNeuro]([https://openneuro.org/](https://openneuro.org/datasets/ds001907/versions/3.0.2)).
 
 
 
