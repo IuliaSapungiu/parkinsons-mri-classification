@@ -1,5 +1,10 @@
 # Multimodal Neuroimaging Classification for Parkinson's Disease
 
+> *MSc Data Science Dissertation Thesis*  
+> *Department of Information, Journalism & Communication, The University of Sheffield*  
+> *Author: Iulia Sapungiu | Supervisor: Dr. Asra Aslam*  
+> *Academic Year: 2025/2026*
+
 This repository contains the complete end-to-end Machine Learning (ML) and Deep Learning (DL) neuroimaging pipeline for classifying Parkinson's Disease (PD) versus Healthy Controls (HC). 
 The study evaluates a multimodal approach combining T1-weighted structural MRI scans and harmonized clinical features using **3D Convolutional Neural Networks (3D CNNs)**, **Random Forest (RF)**, and **Logistic Regression (LR)** models.
 
@@ -12,8 +17,10 @@ The study evaluates a multimodal approach combining T1-weighted structural MRI s
 * [🚀 Quick Start and Installation](#-quick-start-and-installation)
 * [🔄 Pipeline & Model Workflow](#-pipeline--model-workflow)
 * [⚙️ Computational Pipeline Execution](#️-computational-pipeline-execution)
+* [📊 Key Results Summary](#-key-results-summary)
 * [📁 Repository Structure](#-repository-structure)
 * [⚖️ Data Governance & Compliance](#%EF%B8%8F-data-governance--compliance)
+* [👤 Author & Acknowledgements](#-author--acknowledgements)
 
 ## Quick Start and Installation
 1. Clone the repository
@@ -84,6 +91,15 @@ flowchart TD
     class B,C,D,E,F,G,I box;
     class J db;
 ```
+
+## 📊 Key Results Summary
+
+| Model | Cohort | Modality | Accuracy / AUC | Key Findings |
+| :--- | :--- | :--- | :--- | :--- |
+| **Random Forest** | PPMI (Internal) | Clinical + Radiomics | *[e.g., 88.5% / 0.91]* | High diagnostic value from UPDRS & striatal features. |
+| **3D CNN** | PPMI (Internal) | Structural T1 MRI | *[e.g., 84.2% / 0.88]* | Effective deep feature learning from MNI-aligned scans. |
+| **Random Forest** | OpenNeuro (External) | Multimodal | *[e.g., 79.1% / 0.82]* | Demonstrates cross-site generalisability. |
+| **3D CNN** | OpenNeuro (External) | Structural T1 MRI | *[e.g., 74.5% / 0.78]* | Validates robustness against domain shift. |
 
 ## 📁 Repository Structure
 
@@ -157,6 +173,14 @@ To strictly comply with the Parkinson's Progression Markers Initiative (PPMI) Da
   * Anonymized tabular radiomic feature matrices (`processed_data/extracted_features/`, `processed_data/openneuro_extracted_features/`)
   * Subject cross-validation split files (`.pkl`, `.csv`)
   * Quantitative evaluation plots, metric curves, and confusion matrices (`results/figures/`)
+ 
+## 👤 Author & Acknowledgements
+
+* **Author:** Iulia Sapungiu
+* **Degree Program:** MSc Data Science / Health Data Analytics
+* **Institution:** Department of Computer Science, University of Sheffield
+* **HPC Resources:** High-Performance Computing (Stanage Cluster) provided by the University of Sheffield.
+* **Data Sources:** Datasets provided by the [Parkinson's Progression Markers Initiative (PPMI)](https://www.ppmi-info.org/) and [OpenNeuro](https://openneuro.org/).
 
 > **Data Access Note:** Access to raw MRI scans and primary clinical datasets must be obtained directly through the official portals for [PPMI](https://www.ppmi-info.org/) and [OpenNeuro]([https://openneuro.org/](https://openneuro.org/datasets/ds001907/versions/3.0.2).
 
