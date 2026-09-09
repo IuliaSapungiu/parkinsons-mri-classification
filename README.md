@@ -14,6 +14,7 @@ The study evaluates a multimodal approach combining T1-weighted structural MRI s
 ---
 
 ## 📋 Table of Contents
+* [💻 Computational Requirements](#-computational-requirements)
 * [🚀 Quick Start and Installation](#-quick-start-and-installation)
 * [🔄 Pipeline & Model Workflow](#-pipeline--model-workflow)
 * [⚙️ Computational Pipeline Execution](#️-computational-pipeline-execution)
@@ -21,6 +22,12 @@ The study evaluates a multimodal approach combining T1-weighted structural MRI s
 * [📁 Repository Structure](#-repository-structure)
 * [⚖️ Data Governance & Compliance](#%EF%B8%8F-data-governance--compliance)
 * [👤 Author & Acknowledgements](#-author--acknowledgements)
+
+## 💻 Computational Requirements
+
+* **Preprocessing (NIfTI Conversion, Skull Stripping, Registration):** GPU acceleration recommended (e.g., HD-BET for automated skull stripping). Tested and executed on the **Stanage HPC cluster** (University of Sheffield) using NVIDIA GPUs with CUDA support.
+* **3D CNN Model Training:** High-performance GPU required. Training averaged **~77 seconds per epoch** on a Stanage NVIDIA GPU node.
+* **Classical Machine Learning (RF, LR):** CPU execution is sufficient for radiomic feature scaling, tabular model fitting, and cross-validation.
 
 ## Quick Start and Installation
 1. Clone the repository
@@ -184,7 +191,11 @@ To strictly comply with the Parkinson's Progression Markers Initiative (PPMI) Da
 * **HPC Resources:** High-Performance Computing (Stanage Cluster) provided by the University of Sheffield.
 * **Data Sources:** Datasets provided by the [Parkinson's Progression Markers Initiative (PPMI)](https://www.ppmi-info.org/) and [OpenNeuro](https://openneuro.org/).
 
-> **Data Access Note:** Access to raw MRI scans and primary clinical datasets must be obtained directly through the official portals for [PPMI](https://www.ppmi-info.org/) and [OpenNeuro]([https://openneuro.org/](https://openneuro.org/datasets/ds001907/versions/3.0.2).
+> **Data Access Note:** Access to raw MRI scans and primary clinical datasets must be obtained directly through the official portals for [PPMI](https://www.ppmi-info.org/) and [OpenNeuro]([https://openneuro.org/](https://openneuro.org/datasets/ds001907/versions/3.0.2). This work was supported by the Northern, Yorkshire and Humberside Digital Informatics Forum (NYHDIF) Bursary Award Scheme, University of Sheffield.
 
 
+> **If you use this code or methodology, please cite:**
+*Sapungiu, I. (2026). AI-Based Classification of Early-Stage 
+Parkinson's Disease from Structural Neuroimaging: A Multimodal 
+Comparative Study. MSc Dissertation, University of Sheffield.*
 
